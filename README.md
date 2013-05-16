@@ -24,7 +24,7 @@ Frigga是一款使用简单、极具扩展的进程监控的框架。她基于�
 ## 安装
 
 ```
-git clone 
+git clone git@github.com:xiaomi-sa/frigga.git 
 ```
 
 ## 使用
