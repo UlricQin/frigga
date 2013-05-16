@@ -38,7 +38,7 @@ cd script/ && ./run.rb start
 ```
 - 第一次使用会使用bundle安装vendor/cache/*.gem到系统
 - 在run.sh中，调用`god --no-events --log-level info -c #{DIR}/conf/base.god`启动god
-- 在run.sh中，通过god启动的frggia `god load conf/frigga.god`
+- 在run.sh中，通过god启动的frigga `god load conf/frigga.god`
 
 通过浏览器链接http://localhost:9901, 默认用户名: admin, 默认密码: 123，可以在web查看
 
@@ -94,6 +94,7 @@ end
 
 > 其中http_url, process_log为frigga支持的新参数
 > w.http_url = "www.xiaomi.com"， 在web端点击process name，可以跳转到指定的url地址
+
 > w.process_log 支持数组或字符串配置
 >> w.process_log = "/home/work/xxx/log/xxx.log"
 >> w.process_log = ["/home/work/xxx/log/xxx.log", "/home/work/xxx/log/xxx1.log"]
@@ -140,8 +141,8 @@ end
 
 `使用rpc接口,遵循标准的xmlrpc协议.以下是一个调用demo`
 
-
-```
+python的调用方法
+``` python
 /bin/env python
 import xmlrpclib
 server_ip = "your_ip"
@@ -150,6 +151,29 @@ uri = "http://" + server_ip + ":" + server_port + "/rpc"
 server = xmlrpclib.ServerProxy(uri)
 print server.call_somethg.do_somethg()
 ```
+
+ruby的调用方法
+``` ruby
+require "xmlrpc/client"
+require "pp"
+server = XMLRPC::Client.new2("http://127.0.0.1:9001/rpc")
+puts server.call('help')
+puts "-----------------------"
+loop do
+  begin
+    x = gets.strip.split(/\s/)
+    next if x.empty?
+    result = server.call(*x)
+    pp result
+    puts "-----------------------"
+  rescue => e
+    puts e.message
+    puts e.backtrace.join("\n")
+    next
+  end
+end
+```
+调用`help`方法，会列出frigga支持的所有rpc call
 
 ## 注意事项
 
