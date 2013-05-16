@@ -1,0 +1,14 @@
+---
+port: 9001
+
+white_list:
+  - 127.0.0.1
+  - 10.180.2.13
+
+#idc 10.0.2.30
+ldap:
+  host: 10.237.8.2
+  port: 389
+  base: OU=MIOffice,DC=xiaomi,DC=net
+  username: xiaomi\sa-ldap
+  password: XiaomiSa@20121228
