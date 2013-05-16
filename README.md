@@ -97,8 +97,11 @@ end
 
 > w.process_log 支持数组或字符串配置
 >> w.process_log = "/home/work/xxx/log/xxx.log"
+
 >> w.process_log = ["/home/work/xxx/log/xxx.log", "/home/work/xxx/log/xxx1.log"]
+
 配置好process_log后，可以通过god log process_name或web端查看日志, 如进程名为w.name = "frigga"
+
 `god log frigga [1/2/3...]`
 
 ### 为frigga添加白名单
@@ -118,8 +121,10 @@ end
 `添加自定义xmlrpc接口`
 
 > rpc接口的添加可以参照lib/frigga/rpc/god.rb
+
 > 假设我们要添加一个叫做call_somethg的接口,支持一个叫做do_somethg的方法，可以按照下面方法开发:
 >> 首先在lib/frigga/rpc/下添加一个call_somethg.rb的文件
+
 >> call_somethg.rb文件中的namespace应该遵循以下结构。需要注意的是要将需要调用的function写入到RPC_LIST数组中，作为方法的注册。
 
 ```
@@ -143,7 +148,6 @@ end
 
 python的调用方法
 ``` python
-/bin/env python
 import xmlrpclib
 server_ip = "your_ip"
 server_port = "9001"
